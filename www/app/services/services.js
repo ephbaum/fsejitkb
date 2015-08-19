@@ -43,7 +43,23 @@ angular.module('app.services', [])
     }
   };
 })
-
+.factory('Questions', function(){
+    var questions = [{
+        id : 0, 
+        title: "How do you install Echo?"
+    }, {
+        id : 1, 
+        title: "How do you uninstall Echo?"
+    }, {
+        id : 2, 
+        title: "How do bacon a narwhal?"
+    }];
+    return {
+    all: function() {
+      return questions;
+    }
+    }
+})
 .factory('$localstorage', ['$window', function ( $window ) {
   return {
     set: function ( key, value ) {
