@@ -1,4 +1,4 @@
-angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services' ] )
+angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services', 'ngResource' ] )
 
 .run( function( $ionicPlatform ) {
   $ionicPlatform.ready( function() {
