@@ -43,7 +43,6 @@ angular.module('app.services', [])
     }
   };
 })
-
 .factory( 'Questions', function( $resource ){
      var resource = $resource('https://dev.mtsecho.com/knowledge/question/:query',{query:'@query' }, 
                              {'get':{method: 'GET',isArray:true }  });
