@@ -1,11 +1,12 @@
 angular.module( 'app.controllers', [] )
 
-.controller('LoginCtrl', function ($scope, $state, $http, $localstorage) {
+.controller( 'LoginCtrl', function ( $scope, $state, $localstorage, Login ) {
 
   var storedUser = $localstorage.getObject( 'user' );
+
   if ( typeof storedUser.username !== 'undefined' && typeof storedUser.password !== 'undefined' ) {
-    $http
-      .post( 'https://dev.mtsecho.com/knowledge/login', storedUser )
+    Login
+      .post( storedUser )
       .then( function ( response ) {
         console.dir( ['Success', response] );
         $state.go( 'tab.dashboard' );
@@ -14,12 +15,10 @@ angular.module( 'app.controllers', [] )
     } );
    }
 
-  $scope.login = function (user) {
+  $scope.login = function ( user ) {
 
-    console.dir( ['Login', user] );
-
-    $http
-      .post( 'https://dev.mtsecho.com/knowledge/login', user )
+    Login
+      .post( user )
       .then( function ( response ) {
         console.dir( ['Success', response] );
         $localstorage.setObject( 'user', user );
@@ -31,17 +30,23 @@ angular.module( 'app.controllers', [] )
   };
 })
 
-.controller( 'DashboardCtrl', function ( $scope ) {
-  
-} )
-
+.controller( 'DashboardCtrl', function ( $scope, Questions) {
+    //inital questions 
+    $scope.questions  = Questions.getAll(); 
+    
+   $scope.search = ionic.debounce(function() {
+                $scope.questions = Questions.search( $scope.query );
+        }, 500);
+    })
 .controller( 'BookmarksCtrl', function ( $scope, Bookmarks ) {
   $scope.bookmarks = Bookmarks.all();
   $scope.remove = function( bookmark ) {
     Bookmarks.remove( bookmark );
   }
 })
-
+.controller( 'NewQuestionCtrl',function( $scope){ 
+    
+}) 
 .controller( 'BookmarksDetailCtrl', function( $scope, $stateParams, Bookmarks ) {
   $scope.bookmark = Bookmarks.get( $stateParams.bookmarkId );
 })

@@ -44,7 +44,9 @@ angular.module( 'app.controllers', [] )
     Bookmarks.remove( bookmark );
   }
 })
-
+.controller( 'NewQuestionCtrl',function( $scope){ 
+    
+}) 
 .controller( 'BookmarksDetailCtrl', function( $scope, $stateParams, Bookmarks ) {
   $scope.bookmark = Bookmarks.get( $stateParams.bookmarkId );
 })

@@ -67,6 +67,15 @@ angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services', '
           controller: 'SettingsCtrl'
         }
       }
+  })
+     .state('tab.new-question',{ 
+         url :'/newQuestion', 
+         views:{ 
+            'tab-new-question':{ 
+                templateUrl:'/app/templates/tab-new-question.html',
+                controller: 'NewQuestionCtrl'
+            }
+         }
   });
 
   // if none of the above states are matched, use this as the fallback
