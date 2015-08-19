@@ -1,5 +1,4 @@
 angular.module( 'app.controllers', [] )
-
 .controller( 'LoginCtrl', function ( $scope, $state, $localstorage, Login ) {
 
   var storedUser = $localstorage.getObject( 'user' );
@@ -29,7 +28,6 @@ angular.module( 'app.controllers', [] )
 
   };
 })
-
 .controller( 'DashboardCtrl', function ( $scope, Questions) {
     //inital questions 
     $scope.questions  = Questions.getAll(); 
@@ -43,12 +41,14 @@ angular.module( 'app.controllers', [] )
   $scope.remove = function( bookmark ) {
     Bookmarks.remove( bookmark );
   }
-})
-
+} )
+.controller( 'QuestionDetailCtrl', function ( $scope, $stateParams, Questions ) {
+  console.log( $stateParams.questionId );
+  $scope.question = Questions.getById( $stateParams.questionId );
+} )
 .controller( 'BookmarksDetailCtrl', function( $scope, $stateParams, Bookmarks ) {
   $scope.bookmark = Bookmarks.get( $stateParams.bookmarkId );
 })
-
 .controller( 'SettingsCtrl', function( $scope ) {
   $scope.settings = {
     enablePush: true,

@@ -40,7 +40,25 @@ angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services', '
           controller: 'DashboardCtrl'
         }
       }
-    })
+    } )
+    .state( 'tab.dashboard.question-list', {
+      url: 'question-list',
+      views: {
+        'question-list': {
+          templateUurl: '/app/templates/question-list.html'
+        }
+        
+      }
+    } )
+    .state( 'tab.dashboard.question-detail', {
+      url: '/question/:questionId',
+        views: {
+            'tab-dashboard': {
+              templateUrl: '/app/templates/question-detail.html',
+              controller: 'QuestionDetailCtrl'
+            }
+          }
+        } )
     .state('tab.bookmarks', {
       url: '/bookmarks',
       views: {

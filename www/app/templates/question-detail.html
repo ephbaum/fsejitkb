@@ -1,0 +1,36 @@
+<ion-view view-title="{{question.postTitle}}">
+  <div class="list card">
+
+    <div class="item item-avatar">
+      <img src="img/default_avatar.png" />
+      <h2>{{question.postTitle}}</h2>
+      <p>19 August 2015</p>
+    </div>
+
+    <div class="item item-body">
+      <p>
+       {{question.postContent}}
+      </p>
+      <p>
+        <a href="#" class="subdued">Score: 1</a>
+        <a href="#" class="subdued">5 Answers</a>
+      </p>
+    </div>
+
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsup"></i>
+        Upvote
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsdown"></i>
+        Downvote
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbox"></i>
+        Reply
+      </a>
+    </div>
+
+  </div>
+</ion-view>
