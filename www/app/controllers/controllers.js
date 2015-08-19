@@ -41,11 +41,16 @@ angular.module( 'app.controllers', [] )
   $scope.remove = function( bookmark ) {
     Bookmarks.remove( bookmark );
   }
-} )
+
+})
+.controller( 'NewQuestionCtrl',function( $scope){ 
+    
+}) 
 .controller( 'QuestionDetailCtrl', function ( $scope, $stateParams, Questions ) {
   console.log( $stateParams.questionId );
   $scope.question = Questions.getById( $stateParams.questionId );
 } )
+
 .controller( 'BookmarksDetailCtrl', function( $scope, $stateParams, Bookmarks ) {
   $scope.bookmark = Bookmarks.get( $stateParams.bookmarkId );
 })

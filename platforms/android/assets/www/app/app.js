@@ -1,4 +1,4 @@
-angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services' ] )
+angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services', 'ngResource' ] )
 
 .run( function( $ionicPlatform ) {
   $ionicPlatform.ready( function() {
@@ -67,6 +67,15 @@ angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services' ] 
           controller: 'SettingsCtrl'
         }
       }
+  })
+     .state('tab.newQuestion',{ 
+         url :'/newQuestion', 
+         views:{ 
+            'tab-new-Questions':{ 
+                templateUrl:'/app/template/tab-new-question.html',
+                controller: 'NewQuestionCtrl'
+            }
+         }
   });
 
   // if none of the above states are matched, use this as the fallback
