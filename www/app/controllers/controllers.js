@@ -30,10 +30,14 @@ angular.module( 'app.controllers', [] )
   };
 })
 
-.controller( 'DashboardCtrl', function ( $scope, Questions ) {
-
-} )
-
+.controller( 'DashboardCtrl', function ( $scope, Questions) {
+    //inital questions 
+    $scope.questions  = Questions.getAll(); 
+    
+   $scope.search = ionic.debounce(function() {
+                $scope.questions = Questions.search( $scope.query );
+        }, 500);
+    })
 .controller( 'BookmarksCtrl', function ( $scope, Bookmarks ) {
   $scope.bookmarks = Bookmarks.all();
   $scope.remove = function( bookmark ) {
