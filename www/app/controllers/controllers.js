@@ -1,11 +1,12 @@
 angular.module( 'app.controllers', [] )
 
-.controller('LoginCtrl', function ($scope, $state, $http, $localstorage) {
+.controller( 'LoginCtrl', function ( $scope, $state, $localstorage, Login ) {
 
   var storedUser = $localstorage.getObject( 'user' );
+
   if ( typeof storedUser.username !== 'undefined' && typeof storedUser.password !== 'undefined' ) {
-    $http
-      .post( 'https://dev.mtsecho.com/knowledge/login', storedUser )
+    Login
+      .post( storedUser )
       .then( function ( response ) {
         console.dir( ['Success', response] );
         $state.go( 'tab.dashboard' );
@@ -14,12 +15,10 @@ angular.module( 'app.controllers', [] )
     } );
    }
 
-  $scope.login = function (user) {
+  $scope.login = function ( user ) {
 
-    console.dir( ['Login', user] );
-
-    $http
-      .post( 'https://dev.mtsecho.com/knowledge/login', user )
+    Login
+      .post( user )
       .then( function ( response ) {
         console.dir( ['Success', response] );
         $localstorage.setObject( 'user', user );
@@ -31,8 +30,8 @@ angular.module( 'app.controllers', [] )
   };
 })
 
-.controller( 'DashboardCtrl', function ( $scope, Questions) {
-    $scope.questions = Questions.query();  
+.controller( 'DashboardCtrl', function ( $scope, Questions ) {
+
 } )
 
 .controller( 'BookmarksCtrl', function ( $scope, Bookmarks ) {
