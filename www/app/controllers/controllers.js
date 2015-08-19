@@ -32,7 +32,7 @@ angular.module( 'app.controllers', [] )
 })
 
 .controller( 'DashboardCtrl', function ( $scope, Questions) {
-    $scope.questions = Questions.all(); 
+    $scope.questions = Questions.query();  
 } )
 
 .controller( 'BookmarksCtrl', function ( $scope, Bookmarks ) {
