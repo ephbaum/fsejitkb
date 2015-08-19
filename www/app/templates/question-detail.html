@@ -1,36 +1,48 @@
 <ion-view view-title="{{question.postTitle}}">
-  <div class="list card">
+  <ion-content padding="true">
+    
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/default_avatar.png" />
+        <h2>{{question.postTitle}}</h2>
+        <p>{{question.userName}}</p>
+        <p>Created: {{question.postCreated}}</p>
+      </div>
 
-    <div class="item item-avatar">
-      <img src="img/default_avatar.png" />
-      <h2>{{question.postTitle}}</h2>
-      <p>19 August 2015</p>
+      <div class="item item-body">
+        <p>
+          {{question.postContent}}
+        </p>
+        <p>
+          <a href="#" class="subdued">{{question.postVotes}} Vote(s)</a>
+          <a href="#" class="subdued">{{answers.length}} Answer(s)</a>
+        </p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Upvote
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsdown"></i>
+          Downvote
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Reply
+        </a>
+      </div>
     </div>
 
-    <div class="item item-body">
-      <p>
-       {{question.postContent}}
-      </p>
-      <p>
-        <a href="#" class="subdued">Score: 1</a>
-        <a href="#" class="subdued">5 Answers</a>
-      </p>
-    </div>
-
-    <div class="item tabs tabs-secondary tabs-icon-left">
-      <a class="tab-item" href="#">
-        <i class="icon ion-thumbsup"></i>
-        Upvote
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-thumbsdown"></i>
-        Downvote
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-chatbox"></i>
-        Reply
-      </a>
-    </div>
-
-  </div>
+    <ion-list class="list list-inset">
+      <ion-item class="item-avatar" ng-repeat="answer in answers">
+        <img src="img/default_avatar.png" />
+        <div class="item-text-wrap">{{answer.postContent}}</div>
+        <p>on {{answer.postCreated}}</p>
+        <p>by {{answer.userName}}</p>
+        <p>{{answer.postVotes}} Vote(s)</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

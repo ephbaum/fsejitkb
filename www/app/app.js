@@ -44,10 +44,9 @@ angular.module( 'FSE-JiTKb-App', [ 'ionic', 'app.controllers', 'app.services', '
     .state( 'tab.dashboard.question-list', {
       url: 'question-list',
       views: {
-        'question-list': {
+        'question-list@tab-dashboard': {
           templateUurl: '/app/templates/question-list.html'
         }
-        
       }
     } )
     .state( 'tab.question-detail', {
