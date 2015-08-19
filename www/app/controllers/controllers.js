@@ -32,8 +32,14 @@ angular.module( 'app.controllers', [] )
 })
 
 .controller( 'DashboardCtrl', function ( $scope, Questions) {
-    $scope.questions = Questions.query();  
-} )
+    //inital questions 
+    $scope.questions  = Questions.getAll(); 
+    
+   $scope.search = ionic.debounce(function() {
+                $scope.questions = Questions.search( $scope.query );
+        }, 500);
+    }
+ )
 
 .controller( 'BookmarksCtrl', function ( $scope, Bookmarks ) {
   $scope.bookmarks = Bookmarks.all();

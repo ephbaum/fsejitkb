@@ -43,10 +43,23 @@ angular.module('app.services', [])
     }
   };
 })
-.factory('Questions', function( $resource){
-     return  $resource('https://dev.mtsecho.com/knowledge/questions');    
-    }
-)
+.factory( 'Questions', function( $resource ){
+     var resource = $resource('https://dev.mtsecho.com/knowledge/question/:query',{query:'@query' }, 
+                             {'get':{method: 'GET',isArray:true }  });
+    
+    return {
+        search: function( query ) {
+            return   resource.get({query: query}) ;
+        },
+        getById: function( id ) {
+             return   resource.get({query: id});
+        },
+        getAll: function() {
+            return resource.query();
+        }
+    };
+    
+})
 .factory('$localstorage', ['$window', function ( $window ) {
   return {
     set: function ( key, value ) {
