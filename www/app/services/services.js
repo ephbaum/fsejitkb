@@ -43,6 +43,7 @@ angular.module('app.services', [])
     }
   };
 })
+
 .factory( 'Questions', function( $resource ){
      var resource = $resource('https://dev.mtsecho.com/knowledge/question/:query',{query:'@query' }, 
                              {'get':{method: 'GET',isArray:true }  });
@@ -75,4 +76,33 @@ angular.module('app.services', [])
       return JSON.parse( $window.localStorage[key] || '{}' );
     }
   }
-}]);
+}] )
+.factory( 'Login', function ( $http ) {
+  return {
+    post: function ( userObject ) {
+      var options = {
+        url: 'https://dev.mtsecho.com/knowledge/login',
+        // url: 'https://echo.localhost/knowledge/login',
+        headers: {
+          'X-Security-Tag': 'fsejitkb'
+        },
+        method: 'post',
+        data: userObject
+      }
+      return $http( options );
+    }
+  }
+} )
+.directive( 'ngEnter', function () {
+  return function ( scope, element, attrs ) {
+    element.bind( "keydown keypress", function ( event ) {
+      if ( event.which === 13 ) {
+        scope.$apply( function () {
+          scope.$eval( attrs.ngEnter );
+        } );
+
+        event.preventDefault();
+      }
+    } );
+  };
+} );;
