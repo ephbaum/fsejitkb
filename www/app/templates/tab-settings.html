@@ -1,6 +1,13 @@
 <ion-view view-title="Account Settings">
   <ion-content>
+
     <ion-list>
+      <div class="item">
+        <button class="button button-block button-energized icon-right ion-log-out" ng-click="logout()">
+          Log Out
+        </button>
+      </div>
+      <h4 class="item item-divider">Alert Settings</h4>
       <ion-toggle  ng-model="settings.enablePush" toggle-class="toggle-positive">
         Enable Push
       </ion-toggle>

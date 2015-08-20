@@ -1,4 +1,4 @@
-<ion-view view-title="{{question.postTitle}}">
+<ion-view ng-show="question" view-title="{{question.postTitle}}">
   <ion-content padding="true">
     
     <div class="list card">
@@ -34,15 +34,6 @@
         </a>
       </div>
     </div>
-
-    <ion-list class="list list-inset">
-      <ion-item class="item-avatar" ng-repeat="answer in answers">
-        <img src="img/default_avatar.png" />
-        <div class="item-text-wrap">{{answer.postContent}}</div>
-        <p>on {{answer.postCreated}}</p>
-        <p>by {{answer.userName}}</p>
-        <p>{{answer.postVotes}} Vote(s)</p>
-      </ion-item>
-    </ion-list>
+    <div ng-show="answers" ng-include="'app/templates/answers-list.html'"></div>
   </ion-content>
 </ion-view>

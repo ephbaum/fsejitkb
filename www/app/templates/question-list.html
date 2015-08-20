@@ -1,8 +1,8 @@
 <ion-list class="list list-dark">
-  <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="question in questions" type="item-text-wrap" href="#">
+  <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="question in questions" type="item-text-wrap" href="#/tab/question/{{question.postId}}">
     <img src="img/default_avatar.png" />
     <h2>{{question.postTitle}}</h2>
-    <p>{{question.postText}}</p>
+    <p>{{question.postContent}}</p>
     <i class="icon ion-chevron-right icon-accessory"></i>
 
     <ion-option-button class="button-assertive" ng-click="remove(question)">

@@ -58,7 +58,7 @@ angular.module('app.services', [])
         }
     };    
 })
-.factory('$localstorage', ['$window', function ( $window ) {
+.factory( '$localstorage', ['$window', function ( $window ) {
   return {
     set: function ( key, value ) {
       $window.localStorage[key] = value;
@@ -71,6 +71,9 @@ angular.module('app.services', [])
     },
     getObject: function ( key ) {
       return JSON.parse( $window.localStorage[key] || '{}' );
+    },
+    remove: function ( key ) {
+      $window.localStorage.removeItem( key );
     }
   }
 }] )

@@ -1,29 +1,38 @@
 angular.module( 'app.controllers', [] )
-.controller( 'LoginCtrl', function ( $scope, $state, $localstorage, Login ) {
-
+.controller( 'LoginCtrl', function ( $scope, $state, $ionicPopup, $localstorage, Login ) {
   var storedUser = $localstorage.getObject( 'user' );
-
-  if ( typeof storedUser.username !== 'undefined' && typeof storedUser.password !== 'undefined' ) {
-    Login
-      .post( storedUser )
-      .then( function ( response ) {
-        $state.go( 'tab.dashboard' );
-      }, function ( error ) {
-        console.error( 'Error', error );
+  $scope.showLogin = false;
+  $scope.showErrorAlert = function ( title, template ) {
+    var alertPopup = $ionicPopup.alert( {
+      title: ( title.length > 0 ) ? title : 'Error',
+      template: ( template.length > 0 ) ? template : 'There was an unknown error, which is a little terrifying.'
     } );
-   }
-
+    alertPopup.then( function ( res ) {
+      console.log( 'Alert dismissed.' );
+    } );
+  };
   $scope.login = function ( user ) {
     Login
       .post( user )
       .then( function ( response ) {
-        $localstorage.setObject( 'user', user );
-        $state.go( 'tab.dashboard' );
+        if ( response.data.response === 'success' ) {
+          $localstorage.setObject( 'user', user );
+          $state.go( 'tab.dashboard' );
+        } else {
+          $scope.showLogin = true;
+          $scope.showErrorAlert( 'Login Error', response.data.msg );
+        }
       }, function ( error ) {
-       console.error( 'Error', error );
-    });
-
+        $scope.showLogin = true;
+        $scope.showErrorAlert( 'Login Error', 'There was an error communicating with the server. Please try again later.' );
+        console.error( 'Error', error );
+      } );
   };
+  if ( typeof storedUser.login !== 'undefined' && typeof storedUser.password !== 'undefined' ) {
+    $scope.login( storedUser );
+  } else {
+    $scope.showLogin = true;
+  }
 })
 .controller( 'DashboardCtrl', function ( $scope, $state, Questions ) {
   $scope.questions = Questions.getAll();
@@ -61,10 +70,14 @@ angular.module( 'app.controllers', [] )
 .controller( 'BookmarksDetailCtrl', function( $scope, $stateParams, Bookmarks ) {
   $scope.bookmark = Bookmarks.get( $stateParams.bookmarkId );
 })
-.controller( 'SettingsCtrl', function( $scope ) {
+.controller( 'SettingsCtrl', function( $scope, $localstorage ) {
   $scope.settings = {
     enablePush: true,
-    enableSMS: false,
-    enableEmail: false
+    enableSMS: true,
+    enableEmail: true
+  };
+  $scope.logout = function () {
+    $localstorage.remove( 'user' );
+    $window.location.reload( false );
   };
 });

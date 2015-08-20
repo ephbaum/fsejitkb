@@ -1,0 +1,9 @@
+﻿<ion-list class="list list-inset">
+  <ion-item class="item-avatar" ng-repeat="answer in answers">
+    <img src="img/default_avatar.png" />
+    <div class="item-text-wrap">{{answer.postContent}}</div>
+    <p>on {{answer.postCreated}}</p>
+    <p>by {{answer.userName}}</p>
+    <p>{{answer.postVotes}} Vote(s)</p>
+  </ion-item>
+</ion-list>
