@@ -1,40 +1,55 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>FSE:JiTKb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>FSE:JiTKb</title>
+  
+  <!-- Ionic Styles -->
+  <link href="ionic/css/ionic.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <link href="css/style.css" rel="stylesheet">
+  
+  <!-- Ionic & Angular -->
+  <script src="ionic/js/ionic.bundle.min.js"></script>
+  <script src="ionic/js/angular/angular-resource.min.js"></script>
+  
+  <!-- Cordova - Generated on Build -->
+  <script src="cordova.js"></script>
+  
+  <!-- Bootstraps App -->
+  <script src="app/app.js"></script>
 
-    <link href="ionic/css/ionic.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <!-- Routes -->
+  <script src="app/config.js"></script>
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-    <!-- ionic/angularjs js -->
-    <script src="ionic/js/ionic.bundle.min.js"></script>
-    <script src="ionic/js/angular/angular-resource.min.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+  <!-- Controllers -->
+  <script src="app/controllers/login.js"></script>
+  <script src="app/controllers/dashboard.js"></script>
+  <script src="app/controllers/question-detail.js"></script>
+  <script src="app/controllers/bookmarks.js"></script>
+  <script src="app/controllers/bookmark-detail.js"></script>
+  <script src="app/controllers/settings.js"></script>
+  <script src="app/controllers/new-question.js"></script>
 
-    <!-- your app's js -->
-    <script src="app/app.js"></script>
-    <script src="app/controllers/controllers.js"></script>
-    <script src="app/services/services.js"></script>
+  <!-- Services -->
+  <script src="app/services/directive.ng-enter.js"></script>
+  <script src="app/services/factory._localstorage.js"></script>
+  <script src="app/services/factory.login.js"></script>
+  <script src="app/services/factory.questions.js"></script>
+  <script src="app/services/factory.bookmarks.js"></script>
+
 </head>
+
 <body ng-app="FSE-JiTKb-App">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
-    <ion-nav-bar class="bar-dark">
-        <ion-nav-back-button>
-        </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
+
+  <ion-nav-bar class="bar-dark">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-nav-view></ion-nav-view>
+
 </body>
+
 </html>
